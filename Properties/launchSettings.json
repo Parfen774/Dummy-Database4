@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DummyDb": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\Users\\nparf\\Desktop\\DummyDb"
+    }
+  }
+}

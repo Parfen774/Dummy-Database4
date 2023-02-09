@@ -1,0 +1,22 @@
+{
+	"name": "Team",
+	"columns": 
+	[
+		{
+			"name": "id",
+			"type": "uint",
+			"isPrimary": true
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"isPrimary": false
+		},
+		{
+			"name": "cityId",
+			"type": "uint",
+			"referencedTable": "City",
+			"isPrimary": true
+		}
+	] 
+}

@@ -1,0 +1,28 @@
+{
+	"name": "Match",
+	"columns": 
+	[
+		{
+			"name": "idFirstTeam",
+			"type": "uint",
+			"referencedTable": "Team",
+			"isPrimary": true
+		},
+		{
+			"name": "idSecondTeam",
+			"type": "uint",
+			"referencedTable": "Team",
+			"isPrimary": true
+		},
+		{
+			"name": "score",
+			"type": "int[]",
+			"isPrimary": false
+		},
+		{
+			"name": "Date",
+			"type": "DateTime",
+			"isPrimary": false
+		}
+	]
+}

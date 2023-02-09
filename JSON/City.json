@@ -1,0 +1,16 @@
+{
+	"name": "City",
+	"columns": 
+	[
+		{
+			"name": "id",
+			"type": "uint",
+			"isPrimary": true
+		},
+		{
+			"name": "name",
+			"type": "string",
+			"isPrimary": false
+		}
+	]
+}
