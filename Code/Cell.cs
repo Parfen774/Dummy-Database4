@@ -7,14 +7,17 @@ namespace DummyDb
         public Column Column { get; set; }
         public object Data { get; set; }
 
-        public Cell(Column column, string data)
+        public Cell(Column column, string data, bool isFirst)
         {
             Column = column;
-            Data = TryConvertType(Column.Type, data);
+            Data = TryConvertType(Column.Type, data, isFirst);
         }
 
-        private object TryConvertType(string type, string data)
+        private object TryConvertType(string type, string data, bool isFirst)
         {
+            if (isFirst)
+                return data;
+
             switch (type)
             {
                 case "uint":
