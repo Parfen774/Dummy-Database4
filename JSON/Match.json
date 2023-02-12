@@ -3,20 +3,25 @@
 	"columns": 
 	[
 		{
-			"name": "idFirstTeam",
+			"name": "IdFirstTeam",
 			"type": "uint",
 			"referencedTable": "Team",
 			"isPrimary": true
 		},
 		{
-			"name": "idSecondTeam",
+			"name": "IdSecondTeam",
 			"type": "uint",
 			"referencedTable": "Team",
 			"isPrimary": true
 		},
 		{
-			"name": "score",
-			"type": "int[]",
+			"name": "ScoreFirstTeam",
+			"type": "int",
+			"isPrimary": false
+		},
+		{
+			"name": "ScoreSecondTeam",
+			"type": "int",
 			"isPrimary": false
 		},
 		{

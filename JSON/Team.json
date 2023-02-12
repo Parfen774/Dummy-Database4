@@ -3,17 +3,17 @@
 	"columns": 
 	[
 		{
-			"name": "id",
+			"name": "Id",
 			"type": "uint",
 			"isPrimary": true
 		},
 		{
-			"name": "name",
+			"name": "Name",
 			"type": "string",
 			"isPrimary": false
 		},
 		{
-			"name": "cityId",
+			"name": "CityId",
 			"type": "uint",
 			"referencedTable": "City",
 			"isPrimary": true

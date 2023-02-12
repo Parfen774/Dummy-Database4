@@ -3,12 +3,12 @@
 	"columns": 
 	[
 		{
-			"name": "id",
+			"name": "Id",
 			"type": "uint",
 			"isPrimary": true
 		},
 		{
-			"name": "name",
+			"name": "Name",
 			"type": "string",
 			"isPrimary": false
 		}
