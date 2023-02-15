@@ -1,11 +1,19 @@
-﻿namespace DummyDb
+﻿using System;
+
+namespace DummyDb
 {
     class Program
     {
         public static void Main(string[] args)
         {
-            Table Match = new Table(@"JSON/Match.json", @"CSV/Match.csv");
-            Match.Print();
+            Menu Menu = new Menu(@"JSON", @"CSV");
+            
+            while (true)
+            {
+                Menu.Print();
+                var pressButton = Console.ReadKey();
+                Menu.Update(pressButton.Key.ToString());
+            }
         }
     }
 }
