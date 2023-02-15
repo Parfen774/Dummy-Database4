@@ -19,42 +19,68 @@ namespace DummyDb
             for (int i = 0; i < dataCSV.Length; i++)
             {
                 string[] line = dataCSV[i];
-                if (i == 0) Rows.Add(new Row(line, Scheme.Columns, true));
-                else Rows.Add(new Row(line, Scheme.Columns));
+                bool flag = false;
+
+                if (i == 0) flag = true;
+
+                Rows.Add(new Row(line, Scheme.Columns, flag));
             }
                 
         }
 
         public void Print()
         {
-            foreach (Row row in Rows)
+            List<string[]> allLines = GetAllLines();
+            int[] maxColumns = MaxLengthColumns(allLines);
+
+            foreach (string[] line in allLines)
             {
                 StringBuilder result = new StringBuilder();
-                int[] maxColumns = MaxLengthColumns();
 
-                for (int i = 0; i < row.CellsList.Count; i++)
+                for (int i = 0; i < line.Length; i++)
                 {
-                    string data = row.CellsList[i].Data.ToString();
-                    result.Append($"|{data.PadRight(maxColumns[i])}|");
+                    result.Append($"|{line[i].PadRight(maxColumns[i])}|");
+                    result.Replace("||", "|");
                 }
 
-                Console.WriteLine(result.Replace("||", "|"));
-
-                if (Rows.IndexOf(row) == 0)
+                Console.WriteLine(result.ToString());
+                if (allLines.IndexOf(line) == 0)
                     PrintSeparator(maxColumns);
             }
         }
 
-        private int[] MaxLengthColumns()
+        private List<string[]> GetAllLines()
         {
-            int[] result = new int[Scheme.Columns.Count];
+            List<string[]> result = new List<string[]>();
 
-            for (int i = 0; i < Rows.Count; i++)
-                for (int j = 0; j < result.Length; j++)
+            foreach (Row row in Rows)
+            {
+                string[] line = new string[row.CellsList.Count];
+
+                for (int i = 0; i < row.CellsList.Count; i++)
                 {
-                    int len = Rows[i].CellsList[j].Data.ToString().Length;
-                    result[j] = result[j] < len ? len : result[j]; 
+                    Cell cell = row.CellsList[i];
+
+                    if (cell.Column.ReferencedTable is null)
+                        line[i] = cell.Data.ToString();
+                    else
+                        line[i] = RequestAnotherTable(cell.Column.ReferencedTable, cell.Data.ToString());
                 }
+
+                result.Add(line);
+            }
+
+            return result;
+        }
+
+        private int[] MaxLengthColumns(List<string[]> allLines)
+        {
+            int[] result = new int[allLines[0].Length];
+
+            foreach (string[] line in allLines)
+                for (int i = 0; i < line.Length; i++)
+                    if (result[i] < line[i].Length)
+                        result[i] = line[i].Length;
 
             return result;
         }
@@ -67,6 +93,31 @@ namespace DummyDb
                 separator.Append($"|{new string('-', len)}|");
 
             Console.WriteLine(separator.Replace("||", "|"));
+        }
+
+        private string RequestAnotherTable(string nameTable, string primaryKey)
+        {
+            Table requestTable = new Table($@"JSON/{nameTable}.json", $@"CSV/{nameTable}.csv");
+            List<Column> columnsScheme = requestTable.Scheme.Columns;
+            int indexPK = 0;
+            int indexFK = 0;
+
+            foreach (Column column in columnsScheme)
+            {
+                if (bool.Parse(column.IsPrimary))
+                    indexPK = columnsScheme.IndexOf(column);
+                if (bool.Parse(column.IsForeign))
+                    indexFK = columnsScheme.IndexOf(column);
+            }
+
+            foreach (Row row in requestTable.Rows)
+            {
+                Cell cell = row.CellsList[indexPK];
+                if (cell.Data.ToString() == primaryKey)
+                    return row.CellsList[indexFK].Data.ToString();
+            }
+
+            return columnsScheme[indexFK].Name.ToString();
         }
     }
 }

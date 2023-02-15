@@ -23,7 +23,10 @@ namespace DummyDb
                 Columns.Add(new Column
                     (
                     item["name"].ToString(),
-                    item["type"].ToString()
+                    item["type"].ToString(),
+                    item["isPrimary"].ToString(),
+                    item["isForeign"].ToString(),
+                    (string)item["referencedTable"]
                     ));
             }
         }

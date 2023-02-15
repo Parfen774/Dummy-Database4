@@ -4,8 +4,8 @@
     {
         public static void Main(string[] args)
         {
-            Table Teams = new Table(@"JSON/Team.json", @"CSV/Teams.csv");
-            Teams.Print();
+            Table Match = new Table(@"JSON/Match.json", @"CSV/Match.csv");
+            Match.Print();
         }
     }
 }

@@ -5,12 +5,14 @@
 		{
 			"name": "Id",
 			"type": "uint",
-			"isPrimary": true
+			"isPrimary": true,
+			"isForeign": false
 		},
 		{
-			"name": "Name",
+			"name": "NameCity",
 			"type": "string",
-			"isPrimary": false
+			"isPrimary": false,
+			"isForeign": true
 		}
 	]
 }

@@ -6,28 +6,33 @@
 			"name": "IdFirstTeam",
 			"type": "uint",
 			"referencedTable": "Team",
-			"isPrimary": true
+			"isPrimary": false,
+			"isForeign": false
 		},
 		{
 			"name": "IdSecondTeam",
 			"type": "uint",
 			"referencedTable": "Team",
-			"isPrimary": true
+			"isPrimary": false,
+			"isForeign": false
 		},
 		{
 			"name": "ScoreFirstTeam",
 			"type": "int",
-			"isPrimary": false
+			"isPrimary": false,
+			"isForeign": false
 		},
 		{
 			"name": "ScoreSecondTeam",
 			"type": "int",
-			"isPrimary": false
+			"isPrimary": false,
+			"isForeign": false
 		},
 		{
 			"name": "Date",
 			"type": "DateTime",
-			"isPrimary": false
+			"isPrimary": false,
+			"isForeign": false
 		}
 	]
 }

@@ -5,18 +5,21 @@
 		{
 			"name": "Id",
 			"type": "uint",
-			"isPrimary": true
+			"isPrimary": true,
+			"isForeign": false
 		},
 		{
-			"name": "Name",
+			"name": "TeamName",
 			"type": "string",
-			"isPrimary": false
+			"isPrimary": false,
+			"isForeign": true
 		},
 		{
 			"name": "CityId",
 			"type": "uint",
 			"referencedTable": "City",
-			"isPrimary": true
+			"isPrimary": false,
+			"isForeign": false
 		}
 	] 
 }
