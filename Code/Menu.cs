@@ -47,6 +47,7 @@ namespace DummyDb
                     System.Environment.Exit(0);
                     break;
                 case "Enter":
+                    CreateTable();
                     break;
             }
 
@@ -74,6 +75,15 @@ namespace DummyDb
                     result.Add(nameScheme);
 
             return result.ToArray();
+        }
+
+        private void CreateTable()
+        {
+            Table table = new Table($@"JSON/{Items[Point]}.json", $@"CSV/{Items[Point]}.csv");
+            Console.Clear();
+            table.Print();
+            Console.Write("\nДля возвращения в главное меню нажмите любую клавишу...");
+            Console.ReadKey();
         }
     }
 }
